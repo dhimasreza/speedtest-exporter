@@ -12,9 +12,11 @@ app = Flask("Speedtest-Exporter")  # Create flask app
 
 # Setup logging values
 format_string = 'level=%(levelname)s datetime=%(asctime)s %(message)s'
-logging.basicConfig(encoding='utf-8',
-                    level=logging.DEBUG,
-                    format=format_string)
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler('Img_To_Local_Python.log', 'w', 'utf-8')
+root_logger.addHandler(handler)
+
 
 # Disable Waitress Logs
 log = logging.getLogger('waitress')
